@@ -1,7 +1,6 @@
 from web3 import Web3 # to interact with the blockchain
 from solcx import compile_standard # To setup the solidity compiler
 from solcx import set_solc_version # Definig the solc version
-import json # to read and write json files
 import os # to read environment variables
 from dotenv import load_dotenv # to load environment variables from .env file
 set_solc_version("0.6.0") #setting the solc version to 0.6.0
@@ -31,8 +30,6 @@ compiled_sol=compile_standard(
     }    
 )
 solc_version="0.6.0",
-'''with open("compiled_logs.json","w") as file:
-    json.dump(compiled_sol,file)'''
 abi=compiled_sol["contracts"]["logs.sol"]["logs"]["abi"]
 bytecode=compiled_sol["contracts"]["logs.sol"]["logs"]["evm"]["bytecode"]["object"]
 
@@ -109,4 +106,5 @@ def read_new_logs():
                     entries.args.sender
                 )
             )
+
     return log_list
